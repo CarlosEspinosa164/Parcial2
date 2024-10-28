@@ -1,16 +1,14 @@
+
 package com.example.demo.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "propietario")
-public class Propietario {
+@Table(name = "veterinario")
+public class Veterinario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +16,11 @@ public class Propietario {
 
     private String nombre;
 
-    private String direccion;
+    private String especialidad;
 
     private String telefono;
 
-    @OneToMany(mappedBy = "propietario")
-    private List<Mascota> mascotas;
-
-
+    @OneToMany(mappedBy = "veterinario")
+    private List<Consulta> consulta;
 }
+

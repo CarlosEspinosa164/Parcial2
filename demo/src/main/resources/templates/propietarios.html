@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Propietarios y Mascotas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            margin: 0 10px;
+            background-color: #007bff;
+        }
+
+        .action-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Propietarios y Mascotas</h1>
+<table>
+    <tr>
+        <th>Propietario</th>
+        <th>Mascotas</th>
+        <th>Acciones</th>
+    </tr>
+    <tr th:each="propietario : ${propietarios}">
+        <td th:text="${propietario.nombre}"></td>
+        <td>
+            <ul>
+                <li th:each="mascota : ${propietario.mascotas}">
+                    <span th:text="${mascota.nombre}"></span>
+                    <form th:action="@{'/consultas/nueva/' + ${mascota.id}}" method="get">
+                        <button type="submit">Nueva Consulta</button>
+                    </form>
+
+
+                </li>
+            </ul>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+</table>
+<div class="action-buttons">
+    <button onclick="location.href='/propietarios/nuevo'">Agregar Cliente</button>
+    <button onclick="location.href='/consultas'">Historia Clínica</button>
+    <button onclick="location.href='/mascotas/nueva'">Agregar Mascota</button>
+</div>
+</body>
+</html>

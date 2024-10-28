@@ -1,17 +1,21 @@
 package com.example.demo.Service;
 
-import com.example.demo.InterfaceService.IMascotasService;
+import com.example.demo.InterfaceService.IMascotaService;
+import com.example.demo.Model.Consulta;
 import com.example.demo.Model.Mascota;
-import com.example.demo.Repository.RMascota;
+import com.example.demo.Repository.MascotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-public class MascotaSevice implements IMascotasService {
+@Service
+public class MascotaSevice implements IMascotaService {
 
 
     @Autowired
-    private RMascota repositorio;
+    private MascotaRepository repositorio;
 
 
     @Override
@@ -20,7 +24,12 @@ public class MascotaSevice implements IMascotasService {
     }
 
     @Override
-    public void guardar(Mascota est) {
-        repositorio.save(est);
+    public Mascota guardar(Mascota mascota) {
+        return repositorio.save(mascota);
+    }
+    @Override
+    public Mascota obtenerPorId(int id) {
+        Optional<Mascota> consulta = repositorio.findById(id);
+        return consulta.orElse(null);
     }
 }

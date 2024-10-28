@@ -4,11 +4,10 @@ import com.example.demo.Model.Mascota;
 
 import java.util.List;
 
-public interface IMascotasService {
-
+public interface IMascotaService {
     List<Mascota> listar();
-
-    void guardar(Mascota clases);
-
+    Mascota guardar(Mascota mascota);
+    Mascota obtenerPorId(int id);
 
 }
+

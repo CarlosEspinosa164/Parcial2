@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Consulta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Nueva Consulta</h1>
+<form action="/consultas/guardar" method="post">
+    <input type="hidden" name="mascota.id" th:value="${mascota.id}" />
+
+    <label for="fecha_consulta">Fecha de Consulta:</label>
+    <input type="date" id="fecha_consulta" name="fecha_consulta" required>
+
+    <label for="veterinario_id">Veterinario:</label>
+    <select id="veterinario_id" name="veterinario.id" required> <!-- Corrección aquí -->
+        <option value="" disabled selected>Seleccione un veterinario</option>
+        <option value="1">Medicina Interna---Pedro---tel:555 1234</option>
+        <option value="2">Cirugía---Paola---tel:555 5678</option>
+        <option value="3">Dermatología---Juan---tel:555 8765</option>
+    </select>
+
+    <label for="motivo">Motivo:</label>
+    <input type="text" id="motivo" name="motivo" required>
+
+    <label for="diagnostico">Diagnóstico:</label>
+    <input type="text" id="diagnostico" name="diagnostico" required>
+
+    <button type="submit">Guardar Consulta</button>
+</form>
+</body>
+</html>
+
+
